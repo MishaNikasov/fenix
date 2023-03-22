@@ -41,11 +41,7 @@ import org.mozilla.fenix.collections.SaveCollectionStep
 import org.mozilla.fenix.components.FenixSnackbar
 import org.mozilla.fenix.components.TabCollectionStorage
 import org.mozilla.fenix.components.accounts.AccountState
-import org.mozilla.fenix.ext.components
-import org.mozilla.fenix.ext.getRootView
-import org.mozilla.fenix.ext.nav
-import org.mozilla.fenix.ext.navigateSafe
-import org.mozilla.fenix.ext.openSetDefaultBrowserOption
+import org.mozilla.fenix.ext.*
 import org.mozilla.fenix.settings.deletebrowsingdata.deleteAndQuit
 import org.mozilla.fenix.utils.Do
 import org.mozilla.fenix.utils.Settings
@@ -388,6 +384,13 @@ class DefaultBrowserToolbarMenuController(
                         .show()
                 }
             }
+            is ToolbarMenu.Item.Gpt -> {
+                currentSession?.let {
+                    navController.navigate(
+                        BrowserFragmentDirections.actionGlobalGptFragment(it.content.url),
+                    )
+                }
+            }
         }
     }
 
@@ -459,6 +462,8 @@ class DefaultBrowserToolbarMenuController(
                 Events.browserMenuAction.record(Events.BrowserMenuActionExtra("set_default_browser"))
             is ToolbarMenu.Item.RemoveFromTopSites ->
                 Events.browserMenuAction.record(Events.BrowserMenuActionExtra("remove_from_top_sites"))
+            is ToolbarMenu.Item.Gpt ->
+                Events.browserMenuAction.record(Events.BrowserMenuActionExtra("open_gpt"))
         }
     }
 

@@ -144,6 +144,10 @@
         android:id="@+id/action_global_connectionDetailsDialogFragment"
         app:destination="@id/connectionPanelDialogFragment" />
     <action
+        android:id="@+id/action_global_gptFragment"
+        app:destination="@id/gptFragment" >
+    </action>
+    <action
         android:id="@+id/action_global_tabsTrayFragment"
         app:destination="@id/tabsTrayFragment"
         app:popUpTo="@id/tabsTrayFragment"
@@ -297,6 +301,16 @@
             app:destination="@id/historySearchDialogFragment"
             app:popUpTo="@id/historySearchDialogFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/gptFragment"
+        android:name="org.mozilla.fenix.gpt.GptFragment"
+        android:label="@string/summary"
+        tools:layout="@layout/fragment_gpt">
+        <argument
+            android:name="pageUrl"
+            app:argType="string" />
     </fragment>
 
     <dialog

@@ -210,6 +210,14 @@ open class DefaultToolbarMenu(
         onItemTapped.invoke(ToolbarMenu.Item.History)
     }
 
+    private val gptItem = BrowserMenuImageText(
+        context.getString(R.string.analyze_page),
+        R.drawable.ic_gpt,
+        primaryTextColor(),
+    ) {
+        onItemTapped.invoke(ToolbarMenu.Item.Gpt)
+    }
+
     private val downloadsItem = BrowserMenuImageText(
         context.getString(R.string.library_downloads),
         R.drawable.ic_download,
@@ -367,6 +375,7 @@ open class DefaultToolbarMenu(
                 BrowserMenuDivider(),
                 bookmarksItem,
                 historyItem,
+                gptItem,
                 downloadsItem,
                 extensionsItem,
                 syncMenuItem(),
